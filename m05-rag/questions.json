@@ -1,0 +1,99 @@
+[
+  {
+    "id": "r01",
+    "input": "How fast did the course model generate text on the reference laptop with a short prompt?",
+    "expected": {
+      "answer": "About 10 tokens per second.",
+      "sections": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+    }
+  },
+  {
+    "id": "r02",
+    "input": "Which version of onnxruntime-node is pinned, and why?",
+    "expected": {
+      "answer": "1.23.2, because it's the last release with Intel Mac (darwin x64) binaries.",
+      "sections": ["m02-under-the-hood/README.md › Setup (once)"]
+    }
+  },
+  {
+    "id": "r03",
+    "input": "What happened to the coffee-shop names when top_p was 0.5?",
+    "expected": {
+      "answer": "Every temperature gave the same name, Mocha Haven, because only one candidate survived at each step.",
+      "sections": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+    }
+  },
+  {
+    "id": "r04",
+    "input": "How long did reading the 1,830-token prompt take the first time, and the second time?",
+    "expected": {
+      "answer": "38.8 seconds the first time, and 0.15 seconds the second time, thanks to the prompt cache.",
+      "sections": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+    }
+  },
+  {
+    "id": "r05",
+    "input": "Which embedding model does the course use, and how many numbers are in each of its vectors?",
+    "expected": {
+      "answer": "nomic-embed-text, with 768 numbers per vector.",
+      "sections": [
+        "m04-embeddings/README.md › Concepts (read before running anything)",
+        "m04-embeddings/README.md › Reference results (67 chunks, `nomic-embed-text`)",
+        "COURSE.md › The stack"
+      ]
+    }
+  },
+  {
+    "id": "r06",
+    "input": "What should I use instead of max_completion_tokens when talking to Ollama?",
+    "expected": {
+      "answer": "max_tokens, because Ollama silently ignores max_completion_tokens.",
+      "sections": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+    }
+  },
+  {
+    "id": "r07",
+    "input": "What is the course's default chat model?",
+    "expected": {
+      "answer": "qwen3:4b-instruct-2507-q4_K_M, the instruct build of Qwen3 4B.",
+      "sections": ["COURSE.md › Pick your model", "COURSE.md › The stack"]
+    }
+  },
+  {
+    "id": "r08",
+    "input": "Why did hybrid search still miss one question in Module 4?",
+    "expected": {
+      "answer": "RRF rewards agreement between the two rankings; the right chunk was found only by BM25, so chunks both methods ranked moderately pushed it out.",
+      "sections": ["m04-embeddings/README.md › Reference results (67 chunks, `nomic-embed-text`)"]
+    }
+  },
+  {
+    "id": "r09",
+    "input": "What score did I get on the Module 3 ticket eval?",
+    "expected": { "answer": null, "sections": [] }
+  },
+  {
+    "id": "r10",
+    "input": "How much does Ollama Cloud cost per month?",
+    "expected": { "answer": null, "sections": [] }
+  },
+  {
+    "id": "r11",
+    "input": "What does the --no-memory flag prove?",
+    "expected": {
+      "answer": "That the model is stateless: with memory off it doesn't know who you are, even though the app still stores the history. Remembering is the app's job, not the model's.",
+      "sections": [
+        "m01-basics/README.md › Lesson 1.2: A chatbot with memory (`chat.ts`)",
+        "m01-basics/README.md › Concepts (read before running anything)"
+      ]
+    }
+  },
+  {
+    "id": "r12",
+    "input": "Who wrote the book this course follows?",
+    "expected": {
+      "answer": "Chip Huyen (AI Engineering, O'Reilly, 2025).",
+      "sections": ["COURSE.md › (intro)"]
+    }
+  }
+]

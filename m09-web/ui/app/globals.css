@@ -1,0 +1,356 @@
+/* Study Buddy. A cool slate page; one colour per kind of step on the timeline. */
+
+:root {
+  color-scheme: light dark;
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --ink: #18202c;
+  --muted: #586274;
+  --rule: #d9dfe7;
+  --focus: #2e6be6;
+  --danger: #b42318;
+  --on-accent: #ffffff;
+
+  /* The timeline: waiting, the router, your code's calls, the model's tool calls, the model */
+  --wait: #a3acb9;
+  --router: #7a5af8;
+  --code: #0f8b7f;
+  --tool: #c47a12;
+  --model: #2e6be6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #10141b;
+    --surface: #171c25;
+    --ink: #e3e8ef;
+    --muted: #9aa3b2;
+    --rule: #2a323f;
+    --focus: #6c9bff;
+    --danger: #ff8a7a;
+    --on-accent: #10141b;
+
+    --wait: #5e6878;
+    --router: #a08bff;
+    --code: #3cc2b3;
+    --tool: #e7a23b;
+    --model: #6c9bff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-reading), Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ─── Layout: one column, the question box pinned to the bottom ─── */
+
+.page {
+  max-width: 46rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.masthead h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  max-width: 38rem;
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Design names and channel names are the machine's words: monospace. */
+.settings select,
+.settings input {
+  min-width: 10rem;
+  padding: 0.375rem 0.5rem;
+  font: 0.875rem/1.4 var(--font-machine), ui-monospace, monospace;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.turns {
+  flex: 1;
+  padding: 0.5rem 0 1rem;
+}
+
+.empty {
+  color: var(--muted);
+}
+
+/* ─── A question and its answer ─── */
+
+.turn {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.question {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.answer {
+  margin: 0 0 0.75rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.5ch;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: var(--model);
+  animation: blink 1s steps(1) infinite;
+}
+
+.note,
+.timing {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.error {
+  margin: 0 0 0.75rem;
+  color: var(--danger);
+}
+
+.sources {
+  margin: 0 0 1rem;
+}
+
+.sources h2 {
+  margin: 0 0 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.sources ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font: 0.8125rem/1.5 var(--font-machine), ui-monospace, monospace;
+}
+
+/* ─── The timeline: the page's one loud element ─── */
+
+.timeline {
+  margin: 0 0 0.5rem;
+}
+
+.bar {
+  display: flex;
+  gap: 2px;
+  height: 0.875rem;
+  overflow: hidden;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--rule) 60%, transparent);
+}
+
+.segment {
+  flex-basis: 0;
+  min-width: 3px;
+}
+
+.segment-wait {
+  background: var(--wait);
+}
+
+.segment-router {
+  background: var(--router);
+}
+
+.segment-code {
+  background: var(--code);
+}
+
+.segment-tool {
+  background: var(--tool);
+}
+
+.segment-model {
+  background: var(--model);
+}
+
+/* The step in progress: striped, because nobody knows yet what it is or how long it takes. */
+.segment-live {
+  background: repeating-linear-gradient(-45deg, var(--model) 0 6px, transparent 6px 12px);
+}
+
+.is-live {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font: 0.8125rem/1.5 var(--font-machine), ui-monospace, monospace;
+  color: var(--muted);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.legend .seconds {
+  color: var(--ink);
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 2px;
+}
+
+/* ─── The trace ─── */
+
+.trace summary {
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.trace ol {
+  margin: 0.5rem 0 0;
+  padding-left: 1.5rem;
+  font: 0.8125rem/1.5 var(--font-machine), ui-monospace, monospace;
+}
+
+.trace li {
+  margin-bottom: 0.375rem;
+  overflow-wrap: anywhere;
+}
+
+.trace pre {
+  margin: 0.25rem 0 0;
+  padding: 0.5rem;
+  font: inherit;
+  color: var(--muted);
+  white-space: pre-wrap;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+/* ─── The question box ─── */
+
+.composer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 0 1rem;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+
+.composer textarea {
+  flex: 1;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.composer button {
+  padding: 0.75rem 1.25rem;
+  font: 600 1rem/1 var(--font-reading), Georgia, serif;
+  color: var(--on-accent);
+  background: var(--model);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .is-live {
+    animation: none;
+  }
+}

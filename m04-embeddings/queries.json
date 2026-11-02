@@ -1,0 +1,62 @@
+[
+  {
+    "id": "q01",
+    "input": "Why does the bot forget who I am when I switch memory off?",
+    "expected": ["m01-basics/README.md › Lesson 1.2: A chatbot with memory (`chat.ts`)", "m01-basics/README.md › Concepts (read before running anything)"]
+  },
+  {
+    "id": "q02",
+    "input": "max_completion_tokens",
+    "expected": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+  },
+  {
+    "id": "q03",
+    "input": "How long did my laptop take to read a long prompt?",
+    "expected": ["m01-basics/README.md › Reference results (Intel i7 laptop, 16 GB, CPU only, `qwen3:4b-instruct-2507-q4_K_M`)"]
+  },
+  {
+    "id": "q04",
+    "input": "Why are language models bad at arithmetic?",
+    "expected": ["m02-under-the-hood/README.md › Lesson 2.1: Tokens (`tokens.ts`)"]
+  },
+  {
+    "id": "q05",
+    "input": "What does softmax do?",
+    "expected": ["m02-under-the-hood/README.md › Concepts (read before running anything)"]
+  },
+  {
+    "id": "q06",
+    "input": "The ONNX runtime binary is missing on my Intel laptop",
+    "expected": ["m02-under-the-hood/README.md › Setup (once)"]
+  },
+  {
+    "id": "q07",
+    "input": "Why does every generation step take longer than the previous one?",
+    "expected": ["m02-under-the-hood/README.md › Lesson 2.4: Generation (`generate.ts`)"]
+  },
+  {
+    "id": "q08",
+    "input": "How can I guarantee the model returns valid JSON?",
+    "expected": ["m03-prompting-evals/README.md › Lesson 3.1: Structured output (`extract.ts`)", "m03-prompting-evals/README.md › Concepts (read before running anything)"]
+  },
+  {
+    "id": "q09",
+    "input": "The judge prefers the longer answer",
+    "expected": ["m03-prompting-evals/README.md › Lesson 3.4: LLM-as-judge (`judge.ts`)", "m03-prompting-evals/README.md › Concepts (read before running anything)"]
+  },
+  {
+    "id": "q10",
+    "input": "Someone hid instructions inside a ticket to trick the classifier",
+    "expected": ["m03-prompting-evals/README.md › Concepts (read before running anything)", "m03-prompting-evals/README.md › Lesson 3.2: An eval for prompts (`eval-tickets.ts`)"]
+  },
+  {
+    "id": "q11",
+    "input": "Which model should I run with 8 GB of RAM?",
+    "expected": ["COURSE.md › Pick your model"]
+  },
+  {
+    "id": "q12",
+    "input": "Why use a separate Slack workspace for the course?",
+    "expected": ["COURSE.md › Accounts"]
+  }
+]

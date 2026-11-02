@@ -1,0 +1,29 @@
+{
+  "name": "ai-engineering-course",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.88",
+    "@ai-sdk/openai-compatible": "^3.0.82",
+    "@huggingface/transformers": "^4.3.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@slack/bolt": "^4.7.3",
+    "@slack/web-api": "^7.19.0",
+    "ai": "^7.0.159",
+    "openai": "^7.36.0",
+    "sqlite-vec": "^0.1.9",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "onnxruntime-node": "1.23.2",
+    "adm-zip": "^0.6.1"
+  }
+}

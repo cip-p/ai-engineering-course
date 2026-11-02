@@ -1,0 +1,4 @@
+# Check out text files with LF line endings on every OS. Git for Windows otherwise
+# converts them to CRLF, and the corpus splitter (m04-embeddings/corpus.ts), the
+# eval files and the sandbox files all expect LF.
+* text=auto eol=lf

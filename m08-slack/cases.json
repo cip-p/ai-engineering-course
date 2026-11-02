@@ -1,0 +1,65 @@
+[
+  {
+    "id": "s01",
+    "input": "Which embedding model does the course use, and how many numbers are in each of its vectors?",
+    "route": "notes",
+    "expected": [
+      "nomic-embed-text",
+      "768"
+    ],
+    "note": "Module 6's t05: one search should do it"
+  },
+  {
+    "id": "s02",
+    "input": "Who wrote the book this course follows?",
+    "route": "notes",
+    "expected": [
+      "Huyen"
+    ],
+    "note": "Module 6's t06: a vocabulary mismatch. The 4B agent never searched; Claude searched twice"
+  },
+  {
+    "id": "s03",
+    "input": "In MCP, which transport has the host start the server as a child process?",
+    "route": "notes",
+    "expected": [
+      "stdio"
+    ],
+    "note": "Module 7, concept 6"
+  },
+  {
+    "id": "f51f89e",
+    "input": "what did I post today?",
+    "route": "slack",
+    "context": {
+      "channel": "study",
+      "asker": "Alex Lee"
+    },
+    "expected": [
+      "enjoyed"
+    ],
+    "note": "The author's worked example: a 👎 on 2026-11-01, when the bot answered: I couldn't find it. It expects a word from the author's own #study channel, so it fails on any other workspace until you replace it with your own exported case (lesson 8.4)."
+  },
+  {
+    "id": "u01",
+    "input": "when was my son born?",
+    "route": "other",
+    "context": {
+      "channel": "study",
+      "asker": "Alex Lee"
+    },
+    "expected": null,
+    "note": "From the Slack run on 2026-11-01: nothing to look up, so the router should send it nowhere"
+  },
+  {
+    "id": "u02",
+    "input": "I believe that RAG is quite a powerful tool.",
+    "route": "other",
+    "context": {
+      "channel": "study",
+      "asker": "Alex Lee"
+    },
+    "expected": null,
+    "note": "From the web UI on 2026-11-01: a statement that asks nothing. Router v1 sent it to notes, which answered \"I don't know based on the notes\""
+  }
+]
