@@ -26,6 +26,7 @@ It was written as a companion to [*AI Engineering*](https://www.oreilly.com/libr
 | 7 | An MCP server by hand, one with the SDK, Claude Code or Codex as a host, and your own MCP client | not in the book |
 | 8 | A Slack study assistant: MCP tools, guardrails, logs, user feedback, and six measured designs | ch. 10 |
 | 9 *(electives)* | A streaming Next.js UI; the same agent rebuilt on the Vercel AI SDK and compared with your own code | |
+| 10 *(electives)* | A LoRA-finetuned 0.6B model against prompting and RAG; quantization, the KV cache and batching, measured; hosted models compared on latency, quality and cost, behind retries and a fallback | ch. 4, 7–10 |
 
 Every module has the same shape: concepts (with the book chapter), code to run, what to notice, exercises where you change the code, checkpoint questions with reference answers, and the author's reference results so you can compare your numbers.
 
@@ -44,7 +45,7 @@ npx tsx m01-basics/chat.ts
 
 ## Stack
 
-TypeScript on Node.js, [Ollama](https://ollama.com) running Qwen3 4B locally, the `openai` SDK talking to Ollama's OpenAI-compatible API, Zod, sqlite-vec, the official MCP TypeScript SDK, and Slack's Bolt in Socket Mode. Nothing needs a paid account; one optional lesson compares your local model with a hosted one.
+TypeScript on Node.js, [Ollama](https://ollama.com) running Qwen3 4B locally, the `openai` SDK talking to Ollama's OpenAI-compatible API, Zod, sqlite-vec, the official MCP TypeScript SDK, and Slack's Bolt in Socket Mode. The finetuning elective adds a Python script, run with [uv](https://docs.astral.sh/uv/). Nothing needs paying for except the optional parts that call hosted models (Module 3's exercise 5, the hosted-models elective): they use about a cent of Hugging Face credit, or a provider's free tier.
 
 ## Layout
 
@@ -52,7 +53,7 @@ TypeScript on Node.js, [Ollama](https://ollama.com) running Qwen3 4B locally, th
 |---|---|
 | `COURSE.md` | The course plan: how it works, the stack, model choice, setup, syllabus |
 | `common/` | Shared code. `llm.ts` is the one place that decides which model and provider to use; `evals.ts` is the eval harness |
-| `m01-basics/` … `m09-web/` | One folder per module. Its `README.md` is the lesson, `checkpoint-answers.md` the reference answers |
+| `m01-basics/` … `m10-hosted/` | One folder per module. Its `README.md` is the lesson, `checkpoint-answers.md` the reference answers |
 | `data/notes/` | Your own Markdown notes; the RAG modules index them with the course text |
 | `.env.example` | Settings template; copy it to `.env` (gitignored) |
 | `docs/initial-prompt.md` | The prompt that started the course |

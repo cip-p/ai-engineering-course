@@ -43,6 +43,7 @@ The core lessons are plain scripts you run in the terminal, not Next.js. A web f
 | MCP | Official TypeScript SDK (`@modelcontextprotocol/sdk`) + MCP Inspector | The reference implementation |
 | Slack | `@slack/bolt` in Socket Mode | Needs no public URL, so it works from your laptop |
 | Model internals (Module 2) | Transformers.js (`@huggingface/transformers`) | Hugging Face models in Node |
+| Finetuning (elective) | Hugging Face `transformers` + `peft`, in one Python script run with [uv](https://docs.astral.sh/uv/) | Training lives in Python. uv installs the script's dependencies, and a suitable Python, without touching the rest of your system |
 
 ### Pick your model
 
@@ -64,7 +65,7 @@ Ollama also lists newer models than these. Once you've built the eval harness (M
 
 | Account | Needed for | When |
 |---|---|---|
-| [Hugging Face](https://huggingface.co/join) (free) | Module 2 (under the hood), comparing your model against bigger hosted ones | Before Module 2 |
+| [Hugging Face](https://huggingface.co/join) (free) | Module 2 (under the hood), comparing your model against bigger hosted ones, the hosted-models elective. Calling hosted models needs an access token and pre-paid credit: a free account includes none, and the course uses about a cent | Before Module 2 |
 | Slack: a **new free workspace** just for this course | Module 8 capstone | Before Module 8 |
 | *Optional:* one hosted free tier (e.g. Groq or Google AI Studio) | A "local vs. frontier model" comparison | Any time |
 
@@ -250,9 +251,14 @@ Instructions are [at the bottom of this file](#module-0-instructions).
 
 - **Web UI with Next.js** → [`m09-web/`](m09-web/README.md): put a chat page on your Module 8 assistant, which runs as its own service. It streams the answer word by word, and shows a live timeline of where the time goes, plus the route, tool calls and sources as they happen.
 - **Frameworks** → [`m09-ai-sdk/`](m09-ai-sdk/README.md): rebuild your agent, MCP client and router with the Vercel AI SDK, run the same eval side by side with your own code, and judge what it actually buys you.
-- **Finetuning** (ch. 7–8): LoRA-finetune a small model: with MLX-LM on Apple Silicon, with Hugging Face PEFT or Unsloth on a Linux machine (or WSL2) with an NVIDIA GPU, or in a free Google Colab GPU notebook otherwise (Python, as a ready-made script you run). Build a small dataset, then compare finetuning against prompting and RAG.
-- **Inference optimization** (ch. 9): measure how quantization levels (q4 / q8 / fp16) trade speed and memory against quality, using your eval harness; learn about the KV cache and how context length affects memory.
-- **Hosted models:** point the base URL at a hosted provider and compare cost, latency and quality.
+
+### Module 10: Electives on the model itself (pick what interests you)
+
+Modules 1 to 9 take the model as it comes. These electives work on the model: adapt it to a task, make it run faster, or rent a bigger one. Each runs Module 3's ticket task with the eval harness, so their numbers compare directly with yours.
+
+- **Finetuning** (ch. 7–8) → [`m10-finetune/`](m10-finetune/README.md): build a training set for Module 3's ticket task from AI-generated data (verified, deduplicated and decontaminated), then LoRA-finetune Qwen3-0.6B with a ready-made Python script (Hugging Face PEFT, run with uv) that uses an NVIDIA GPU, Apple Silicon's GPU or the CPU, or runs in Colab. Load the result into Ollama and compare it with prompting the same model and the 4B one. Then try to teach it facts, and compare that with RAG.
+- **Inference optimization** (ch. 9) → [`m10-inference/`](m10-inference/README.md): measure what q4_K_M, q8_0 and fp16 do to size, memory, load time, prefill and decode speed, and to quality with the eval harness. Predict the KV cache from the model's shape and measure it at longer contexts, overfill the context, and trade one user's latency for everyone's throughput with parallel requests.
+- **Hosted models** (ch. 4, 9–10) → [`m10-hosted/`](m10-hosted/README.md): run the same evals on hosted models through the Hugging Face router, the course model itself among them, and compare latency (median and worst), quality and cost from live prices. Then put retries, timeouts and a fallback model in front of a deliberately flaky provider.
 
 ---
 
@@ -269,14 +275,15 @@ common/evals.ts      ← the eval harness (Module 3 on)
 m01-basics/          ← one folder per module, each with its own README.md lesson
 m02-under-the-hood/
 ...
-m09-ai-sdk/, m09-web/   ← electives
+m09-*/               ← electives around the app: web, ai-sdk
+m10-*/               ← electives on the model: finetune, inference, hosted
 data/notes/          ← your own Markdown notes; the RAG corpus picks them up (Module 4 on)
 .cache/              ← embeddings, downloaded models, indexes (gitignored)
 ```
 
 ## Suggested order
 
-Modules 1 to 8 build on each other, so take them in order. Module 2 is optional but recommended. Module 9 is a menu: pick the electives that interest you, in any order.
+Modules 1 to 8 build on each other, so take them in order. Module 2 is optional but recommended. Modules 9 and 10 are menus: pick the electives that interest you, in any order.
 
 ---
 

@@ -1,0 +1,137 @@
+[
+ {
+  "id": "returns",
+  "input": "I received a lamp 40 days ago and never used it. Can I still return it?",
+  "seen": "How many days after delivery can I send an item back?",
+  "expected": [
+   "45"
+  ]
+ },
+ {
+  "id": "refunds",
+  "input": "My returned chair arrived at your warehouse yesterday. Within how many business days will I see the refund?",
+  "seen": "How many days until a refund shows up?",
+  "expected": [
+   "5"
+  ]
+ },
+ {
+  "id": "standard-shipping",
+  "input": "My basket comes to €45. What will standard shipping cost me?",
+  "seen": "What do you charge for standard delivery?",
+  "expected": [
+   "4.95",
+   "4,95"
+  ]
+ },
+ {
+  "id": "express-shipping",
+  "input": "I want my order tomorrow. By what time today do I have to place an express order?",
+  "seen": "What time do I need to order for next-day delivery?",
+  "expected": [
+   "14"
+  ]
+ },
+ {
+  "id": "where-we-ship",
+  "input": "Apart from EU countries, which three countries do you deliver to?",
+  "seen": "Which countries do you ship to?",
+  "expected": [
+   "switzerland"
+  ]
+ },
+ {
+  "id": "warehouse-pickup",
+  "input": "I'd like to collect my sofa in person. In which city is your warehouse?",
+  "seen": "Where is your warehouse?",
+  "expected": [
+   "tilburg"
+  ]
+ },
+ {
+  "id": "customer-support-hours",
+  "input": "What time does customer support open on Saturdays?",
+  "seen": "Is support open on weekends?",
+  "expected": [
+   "10"
+  ]
+ },
+ {
+  "id": "loyalty-points",
+  "input": "How many points do I need for a €5 discount?",
+  "seen": "What are Oak Points worth?",
+  "expected": [
+   "100"
+  ]
+ },
+ {
+  "id": "discount-codes",
+  "input": "I have three discount codes. How many can I use on a single order?",
+  "seen": "How many discount codes can I combine?",
+  "expected": [
+   "one",
+   "1"
+  ]
+ },
+ {
+  "id": "gift-cards",
+  "input": "I bought a gift card two years ago. How many years is it valid in total?",
+  "seen": "How long is a gift card valid?",
+  "expected": [
+   "3",
+   "three"
+  ]
+ },
+ {
+  "id": "damaged-items",
+  "input": "My mirror arrived cracked. Within how many days must I report it?",
+  "seen": "How long do I have to report damage?",
+  "expected": [
+   "7",
+   "seven"
+  ]
+ },
+ {
+  "id": "price-match",
+  "input": "I bought a table and then saw it cheaper at another EU shop. Within how many days of my purchase does that have to happen for a price match?",
+  "seen": "How does price matching work?",
+  "expected": [
+   "14"
+  ]
+ },
+ {
+  "id": "deleting-an-account",
+  "input": "For how many years do you keep my order history after deleting my account?",
+  "seen": "What happens to my order history if I close my account?",
+  "expected": [
+   "7",
+   "seven"
+  ]
+ },
+ {
+  "id": "two-factor-codes",
+  "input": "For how many minutes is the code in the login text message valid?",
+  "seen": "How long is the two-factor code valid?",
+  "expected": [
+   "10",
+   "ten"
+  ]
+ },
+ {
+  "id": "payment-methods",
+  "input": "I chose Klarna at checkout. How many days do I have to pay?",
+  "seen": "Can I pay later?",
+  "expected": [
+   "30"
+  ]
+ },
+ {
+  "id": "warranty",
+  "input": "How many years of warranty does a bookcase have?",
+  "seen": "How long is the warranty on furniture?",
+  "expected": [
+   "2",
+   "two"
+  ]
+ }
+]

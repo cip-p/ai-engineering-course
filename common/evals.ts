@@ -7,7 +7,7 @@
 // Run every variant on every case, then read the numbers AND the failures.
 
 export type EvalCase<Input, Expected> = { id: string; input: Input; expected: Expected };
-export type Output = { text: string; reasoning?: string; tokensOut?: number };
+export type Output = { text: string; reasoning?: string; tokensIn?: number; tokensOut?: number };
 export type Variant<Input> = { name: string; run: (input: Input) => Promise<Output> };
 export type Score<Expected> = (output: string, expected: Expected) => number;
 
@@ -51,13 +51,14 @@ export async function runEval<Input, Expected>(spec: {
 
 export function printReport(results: Result[], { verbose = false, width = 100 } = {}) {
   const variants = [...new Set(results.map((r) => r.variant))];
+  const nameWidth = Math.max(14, ...variants.map((v) => v.length));
 
-  console.log(`\n${"variant".padEnd(14)} ${"score".padStart(6)} ${"avg time".padStart(9)} ${"avg tokens out".padStart(15)}`);
+  console.log(`\n${"variant".padEnd(nameWidth)} ${"score".padStart(6)} ${"avg time".padStart(9)} ${"avg tokens out".padStart(15)}`);
   for (const variant of variants) {
     const rows = results.filter((r) => r.variant === variant);
     const average = (pick: (r: Result) => number) => rows.reduce((sum, r) => sum + pick(r), 0) / rows.length;
     console.log(
-      `${variant.padEnd(14)} ${`${(average((r) => r.score) * 100).toFixed(0)}%`.padStart(6)} ` +
+      `${variant.padEnd(nameWidth)} ${`${(average((r) => r.score) * 100).toFixed(0)}%`.padStart(6)} ` +
         `${`${average((r) => r.seconds).toFixed(1)}s`.padStart(9)} ${average((r) => r.output.tokensOut ?? 0).toFixed(0).padStart(15)}`,
     );
   }

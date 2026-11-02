@@ -118,7 +118,7 @@ Reference answers for review: [`checkpoint-answers.md`](checkpoint-answers.md)
 
 ## Reference results (67 chunks, `nomic-embed-text`)
 
-These were measured while the course had four modules, so the corpus held 67 chunks. A fresh clone has every module's README from the start, about 140 chunks. On the same laptop that gave embeddings 75%, BM25 92% and hybrid 83%: BM25 won, and hybrid lost one of its questions. That's this module's lesson about the corpus, on a bigger scale: compare the shape of your results with the findings below, not the digits.
+These were measured while the course had four modules, so the corpus held 67 chunks. A fresh clone has every module's README from the start, electives included: 177 chunks. On the same laptop that gave embeddings 75%, BM25 83% and hybrid 75%: BM25 won, hybrid lost two of its questions (q08 and q10) and did no better than embeddings alone, and among the misses, sections of the electives took places in the top 3. (With the 140 chunks the course had before the finetuning, inference and hosted-models electives, it was 75%, 92% and 83%.) That's this module's lesson about the corpus, on a bigger scale: compare the shape of your results with the findings below, not the digits.
 
 | Measurement | Value |
 |---|---|
